@@ -1,0 +1,18 @@
+﻿@model Country[];
+
+@{
+    ViewBag.Message = "Добавить";
+    await Html.RenderPartialAsync("_PartialPlayerForm", Model);
+    ViewBag.Message = "";
+ }
+
+@section Styles {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+
+@section Scripts {
+    <script src="~/jqueryui/jquery-ui.js"></script>
+    <script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/SignalR/AddPlayer.js"></script>
+    <script src="~/js/NewPage.js"></script>
+}

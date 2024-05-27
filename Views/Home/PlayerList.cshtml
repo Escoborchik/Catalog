@@ -1,0 +1,68 @@
+﻿@model Country[];
+
+@{    
+    ViewData["formChangeText"] = "Изменить";
+}
+
+
+
+<div class="text-center">
+    <h3>Таблица футболистов</h3>    
+</div>
+
+<div id="controls" class="row mb-3">
+    <button class="btn btn-primary  ml-3 pr-5 pl-5 col" id="Back">Назад</button>    
+    <button class="btn btn-primary  mr-3 pr-5 pl-5 col" id="Next">Далее</button>
+</div>
+
+<table class="table" id="plTable">
+
+    <thead class="thead">
+        <tr>
+            <th scope="col">Имя Фамилия</th>
+            <th scope="col">Пол</th>
+            <th scope="col">Дата рождения</th>
+            <th scope="col">Команда</th>
+            <th scope="col">Страна</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+
+    <tbody id="playersData">
+    </tbody>
+</table>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Изменение сведеней об игроке</h5>
+                <button class="btn btn-info" data-dismiss="modal">Закрыть</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                @{
+                    ViewBag.Message = "Изменить";
+                    await Html.RenderPartialAsync("_PartialPlayerForm", Model);
+                    ViewBag.Message = "";
+                }
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Styles {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+
+@section Scripts {
+    <script src="~/jqueryui/jquery-ui.js"></script>
+    <script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/SignalR/ListPlayer.js"></script>
+    <script src="~/js/ListPage.js"></script>
+}

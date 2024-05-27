@@ -1,0 +1,46 @@
+﻿@model Country[]
+
+<form id="mainForm">
+    <input type="hidden" id="changeId">    
+    <div class=" form-group">
+            <label>Имя</label>
+            <input type="text" class="form-control" id="firstNameInput" name="firstName" placeholder="Имя" required>
+    </div>   
+    <div class="form-group">
+        <label>Фамилия</label>
+        <input type="text" class="form-control" id="lastNameInput" name="lastName" placeholder="Фамилия" required>
+    </div>
+    <div class="form-group">
+        <label>Пол</label>
+        <select class="form-control" name="sex" id="sexInput">
+            <option value="0">Мужчина</option>
+            <option value="1">Женщина</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Дата рождения:</label>
+        <input type="date" id="birthDateInput" name="birthDate" class="form-control" min="1970-01-01" max="2024-01-01" required>
+    </div>
+    <div class="form-group">
+        <label>Страна</label>
+        <select class="form-control" name="country" id="countryInput">
+            @{
+                foreach (var country in Model)
+                {
+                    <option>@country.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Команда:</label>
+        <small class="text-muted" id="teamMessage">Команда не найдена. Она будет добавлена.</small>
+        <input type="text" id="teamInput" class="form-control" name="team" placeholder="Команда" required>
+    </div>
+    <div class="row">
+        <button class="btn btn-success btn-lg " id="submitEntry" type="submit">@ViewBag.Message</button>
+    </div>
+    <div class="row text-center">
+        <small id="resultMessage" style="display: none;"></small>
+    </div>
+</form>
